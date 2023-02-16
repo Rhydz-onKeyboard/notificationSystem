@@ -6,6 +6,8 @@ import { FindByIdSchedule } from "./useCase/findByIdSchedule";
 import { SaveSchedule } from './useCase/saveSchedule';
 import { ScheduleRepositoryImpl } from './infrastructure/RepositoryImpl/scheduleRepositoryImpl';
 import ScheduleRouter from './infrastructure/routes/schedule.routes';
+import recurringJob from './infrastructure/slack_webhook/scheduleRun';
+import { FindByDateSchedule } from './useCase/findByDateSchedule';
 
 const PORT = process.env.SERVER_PORT || 3000;
 const db = SQLDatabase.getInstance();
@@ -23,5 +25,8 @@ async function getPGDS() {
     )
 
     server.use('/schedule', schedule);
-    server.listen(PORT, () => console.log('Running on port', PORT))
+    server.listen(PORT, () => {
+        console.log('Running on port', PORT)
+        recurringJob(new FindByDateSchedule(new ScheduleRepositoryImpl(dataSource)))
+    })
 })();
