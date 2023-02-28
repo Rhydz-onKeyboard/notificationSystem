@@ -2,5 +2,5 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  coveragePathIgnorePatterns: ['./src/test/schedule/data']
+  coveragePathIgnorePatterns: ['./src/test/schedule/data'],
 };

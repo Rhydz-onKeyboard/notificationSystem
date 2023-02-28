@@ -1,15 +1,16 @@
-import { IScheduleRepository } from '../domain/repository/IScheduleRepository';
-import { Schedule } from "../domain/entity/schedule";
-import { IFindByDateSchedule } from '../domain/useCases/IFindByDateSchedule';
+import { ScheduleRepositoryInterface } from '../domain/repository/ScheduleRepository';
+import { Schedule } from '../domain/entity/schedule';
+import { FindByDateScheduleInterface } from '../domain/useCases/FindByDateSchedule';
 
-export class FindByDateSchedule implements IFindByDateSchedule {
-    scheduleRepository: IScheduleRepository;
-    constructor(scheduleRepository: IScheduleRepository) {
-        this.scheduleRepository = scheduleRepository
-    }
+export default class FindByDateSchedule implements FindByDateScheduleInterface {
+  scheduleRepository: ScheduleRepositoryInterface;
 
-    async execute(date: string): Promise<Schedule[] | []> {
-        const result = await this.scheduleRepository.findByDate(date);
-        return result
-    }
+  constructor(scheduleRepository: ScheduleRepositoryInterface) {
+    this.scheduleRepository = scheduleRepository;
+  }
+
+  async execute(date: string): Promise<Schedule[] | []> {
+    const result = await this.scheduleRepository.findByDate(date);
+    return result;
+  }
 }

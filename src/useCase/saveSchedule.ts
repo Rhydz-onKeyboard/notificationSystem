@@ -1,14 +1,15 @@
-import { Schedule } from "../domain/entity/schedule";
-import { IScheduleRepository } from "../domain/repository/IScheduleRepository";
-import { ISaveSchedule } from "../domain/useCases/ISaveSchedule";
+import { Schedule } from '../domain/entity/schedule';
+import { ScheduleRepositoryInterface } from '../domain/repository/ScheduleRepository';
+import { SaveScheduleInterface } from '../domain/useCases/SaveSchedule';
 
-export class SaveSchedule implements ISaveSchedule {
-    scheduleRepository: IScheduleRepository;
-    constructor(scheduleRepository: IScheduleRepository) {
-        this.scheduleRepository = scheduleRepository;
-    }
+export default class SaveSchedule implements SaveScheduleInterface {
+  scheduleRepository: ScheduleRepositoryInterface;
 
-    async execute(schedule: Schedule): Promise<void> {
-        await this.scheduleRepository.save(schedule)
-    }
+  constructor(scheduleRepository: ScheduleRepositoryInterface) {
+    this.scheduleRepository = scheduleRepository;
+  }
+
+  async execute(schedule: Schedule): Promise<void> {
+    await this.scheduleRepository.save(schedule);
+  }
 }

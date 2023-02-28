@@ -5,7 +5,8 @@
     },
     "extends": [
         "eslint:recommended",
-        "standard-with-typescript"
+        "eslint-config-airbnb-base",
+        "eslint-config-airbnb-typescript"
     ],
     "overrides": [
     ],
