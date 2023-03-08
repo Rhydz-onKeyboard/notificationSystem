@@ -1,4 +1,4 @@
-import { Schedule } from '../../domain/entity/schedule';
+import { Schedule } from "../../domain/entity/schedule";
 
 export interface ScheduleServiceInterface {
   save(schedule: Schedule): Promise<void>;

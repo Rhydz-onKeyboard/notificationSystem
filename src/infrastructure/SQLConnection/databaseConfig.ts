@@ -1,5 +1,5 @@
-import { Pool, PoolConfig } from 'pg';
-import { SQLDatabaseWrapperInterface } from '../../services/interfaces/SQLDatabaseWrapper';
+import { Pool, PoolConfig } from "pg";
+import { SQLDatabaseWrapperInterface } from "../../services/interfaces/SQLDatabaseWrapper";
 
 export default class SQLDatabase implements SQLDatabaseWrapperInterface {
   private static intance: SQLDatabase;
@@ -23,7 +23,10 @@ export default class SQLDatabase implements SQLDatabaseWrapperInterface {
     return SQLDatabase.intance;
   }
 
-  public query(queryString: string, params?: any[] | undefined): Promise<{ rows: any[]; }> {
+  public query(
+    queryString: string,
+    params?: any[] | undefined
+  ): Promise<{ rows: any[] }> {
     return this.pool.query(queryString, params);
   }
 }

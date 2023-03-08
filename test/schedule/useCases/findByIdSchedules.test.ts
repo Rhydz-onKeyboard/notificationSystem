@@ -1,8 +1,8 @@
-import { ScheduleRepositoryInterface } from '../../../src/domain/repository/ScheduleRepository';
-import FindByIdSchedule from '../../../src/useCase/findByIdSchedule';
-import MockScheduleRepository from '../data/mockScheduleClass';
+import { ScheduleRepositoryInterface } from "../../../src/domain/repository/ScheduleRepository";
+import FindByIdSchedule from "../../../src/useCase/findByIdSchedule";
+import MockScheduleRepository from "../data/mockScheduleClass";
 
-describe('Find By Id schedule Use Case', () => {
+describe("Find By Id schedule Use Case", () => {
   let mockscheduleRepository: ScheduleRepositoryInterface;
 
   beforeEach(() => {
@@ -10,14 +10,22 @@ describe('Find By Id schedule Use Case', () => {
     mockscheduleRepository = new MockScheduleRepository();
   });
 
-  test('Should return data by id', async () => {
-    const InputData = '1';
+  test("Should return data by id", async () => {
+    const InputData = "1";
     const ExpectedResult = {
-      id: '1', name: 'Huesito', surname: 'Lechuga', email: 'huesito@lechuga.com', dateOnBoard: '13 02 2023 12 27 00',
+      id: "1",
+      name: "Huesito",
+      surname: "Lechuga",
+      email: "huesito@lechuga.com",
+      dateOnBoard: "13 02 2023 12 27 00",
     };
 
-    jest.spyOn(mockscheduleRepository, 'findById').mockImplementation(() => Promise.resolve(ExpectedResult));
-    const findByIdscheduleUseCase = new FindByIdSchedule(mockscheduleRepository);
+    jest
+      .spyOn(mockscheduleRepository, "findById")
+      .mockImplementation(() => Promise.resolve(ExpectedResult));
+    const findByIdscheduleUseCase = new FindByIdSchedule(
+      mockscheduleRepository
+    );
     const result = await findByIdscheduleUseCase.execute(InputData);
     expect(result).toStrictEqual(ExpectedResult);
   });

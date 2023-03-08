@@ -1,24 +1,24 @@
-import { Router, Request, Response } from 'express';
-import { StatusCodes as code } from 'http-status-codes';
-import { v4 as uuidGen } from 'uuid';
-import { FindByIdScheduleInterface } from '../../domain/useCases/FindByIdSchedule';
-import { SaveScheduleInterface } from '../../domain/useCases/SaveSchedule';
+import { Router, Request, Response } from "express";
+import { StatusCodes as code } from "http-status-codes";
+import { v4 as uuidGen } from "uuid";
+import { FindByIdScheduleInterface } from "../../domain/useCases/FindByIdSchedule";
+import { SaveScheduleInterface } from "../../domain/useCases/SaveSchedule";
 
 export default function ScheduleRouter(
   findByIdscheduleUseCase: FindByIdScheduleInterface,
-  savescheduleUseCase: SaveScheduleInterface,
+  savescheduleUseCase: SaveScheduleInterface
 ) {
   const router = Router();
 
   router
-    .route('/')
+    .route("/")
     .get(async (req: Request, res: Response) => {
       try {
         const { id } = req.body;
         const schedule = await findByIdscheduleUseCase.execute(id);
         res.status(code.OK).json(schedule);
       } catch (err) {
-        res.status(code.BAD_REQUEST).json({ msg: 'Error fetching data' });
+        res.status(code.BAD_REQUEST).json({ msg: "Error fetching data" });
       }
     })
     .post(async ({ body }: Request, res: Response) => {
@@ -34,7 +34,7 @@ export default function ScheduleRouter(
         res.status(code.CREATED).end();
       } catch (err) {
         console.log(err);
-        res.status(code.BAD_REQUEST).json({ msg: 'Error saving data' });
+        res.status(code.BAD_REQUEST).json({ msg: "Error saving data" });
       }
     });
 
