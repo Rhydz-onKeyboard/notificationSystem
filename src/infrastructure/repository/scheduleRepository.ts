@@ -1,6 +1,6 @@
-import { Schedule } from '../../domain/entity/schedule';
-import { ScheduleRepositoryInterface } from '../../domain/repository/ScheduleRepository';
-import { ScheduleServiceInterface } from '../../services/interfaces/ScheduleService';
+import { Schedule } from "../../domain/entity/schedule";
+import { ScheduleRepositoryInterface } from "../../domain/repository/ScheduleRepository";
+import { ScheduleServiceInterface } from "../../services/interfaces/ScheduleService";
 
 export default class ScheduleRepository implements ScheduleRepositoryInterface {
   scheduleDataSource: ScheduleServiceInterface;

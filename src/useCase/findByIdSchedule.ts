@@ -1,6 +1,6 @@
-import { FindByIdScheduleInterface } from '../domain/useCases/FindByIdSchedule';
-import { ScheduleRepositoryInterface } from '../domain/repository/ScheduleRepository';
-import { Schedule } from '../domain/entity/schedule';
+import { FindByIdScheduleInterface } from "../domain/useCases/FindByIdSchedule";
+import { ScheduleRepositoryInterface } from "../domain/repository/ScheduleRepository";
+import { Schedule } from "../domain/entity/schedule";
 
 export default class FindByIdSchedule implements FindByIdScheduleInterface {
   scheduleRepository: ScheduleRepositoryInterface;
